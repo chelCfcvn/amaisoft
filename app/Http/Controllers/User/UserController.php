@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailJob;
 use App\Mail\SendEmailPass;
+use App\Models\Staff;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -46,7 +47,10 @@ class UserController extends Controller
         $this->userService->delete($user);
         return redirect()->route('user');
     }
-    public function confirm(User $data){
-        dd($data);
+    public function confirm(Staff $id, Request $request){
+        $user = User::where('staff_id',$id->id)->first();
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect('/');
     }
 }

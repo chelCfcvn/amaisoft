@@ -10,17 +10,27 @@ use Illuminate\Http\Request;
 
 class SendMailController extends Controller
 {
-    // protected $sendMailService;
-
-    // public function __construct(SendMailService $sendMailService)
-    // {
-    //     $this->sendMailService = $sendMailService;
-    // }
+    /*
+    Gửi mail khi đã đăng nhập vào trang cá nhân rồi
+    */
     public function sendMail(Staff $profile)
     {
         $data['email'] = User::where('staff_id',$profile->id)->first()->email;
         $data['id']= $profile->id;
         dispatch(new SendEmailJob($data));
+        return 'Đã gửi mail thành công';
+    }
+    /*
+    Gửi mail hàng loạt
+    */
+    public function sendMails(Request $request)
+    {
+        foreach($request->list as $email){
+            $data['email'] = $email;
+            $data['id']= User::where('email',$email)->first()->staff_id;
+            dispatch(new SendEmailJob($data));
+        }
+        
         return 'Đã gửi mail thành công';
     }
 }

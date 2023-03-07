@@ -12,7 +12,7 @@
                                     alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                     style="width: 150px; z-index: 1">
                                 <a href="{{ route('send.mail',$profile->id) }}"
-                                    onclick="return confirm('Bạn có thây đổi lại mật khẩu không?')" type="button"
+                                    onclick="return confirm('Bạn có thay đổi lại mật khẩu không?')" type="button"
                                     class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
                                     Reset Password
                                 </a>

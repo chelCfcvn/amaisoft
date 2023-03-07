@@ -32,7 +32,7 @@ class ComposerServiceProvider extends ServiceProvider
             'App\View\DepartmentComposer'
         );
         view()->composer(
-            ['users.show'],
+            ['users.show','users.reset'],
             'App\View\UserComposer'
         );
         view()->composer(

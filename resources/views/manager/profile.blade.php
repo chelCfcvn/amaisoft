@@ -11,10 +11,11 @@
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                                     alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                     style="width: 150px; z-index: 1">
-                                <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                                    style="z-index: 1;">
-                                    Edit profile
-                                </button>
+                                    <a href="{{ route('send.mail',$profile->id) }}"
+                                        onclick="return confirm('Bạn có thây đổi lại mật khẩu không?')" type="button"
+                                        class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
+                                        Reset Password
+                                    </a>
                             </div>
                             <div class="ms-3" style="margin-top: 130px;">
                                 <h5>{{$profile->name}}</h5>

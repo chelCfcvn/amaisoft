@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
@@ -17,11 +18,9 @@
 <body>
     <div class="container">
         <header>Confirm Password</header>
-        <form action="{{route('user.confirm',$data)}}" method="get">
-            <div class="error-text"></div>
-            <div class="field">
-                <input onkeyup="active()" id="pswrd_1" type="text" placeholder="Enter Password">
-            </div>
+        <form action="{{ route('user.confirm', $id) }}" method="post">
+            @csrf
+            <input id="pswrd_1" name="password" type="text" placeholder="Enter Password">
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
     </div>

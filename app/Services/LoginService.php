@@ -27,7 +27,7 @@ class LoginService
                 }
             }
         } else {
-            dd('Mày có tài khoản chưa thằng ngu kia');
+            dd('Bảo admin lập tài khoản cho mới được vào chứ');
         }
     }
 }

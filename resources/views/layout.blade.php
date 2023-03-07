@@ -33,6 +33,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('reset.show')}}">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Reset Password</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('position.show')}}">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Position</span>
@@ -78,6 +84,7 @@
         @yield('list_user')
         @yield('create_user')
         @yield('update_user')
+        @yield('list_reset')
     </section>
 
 

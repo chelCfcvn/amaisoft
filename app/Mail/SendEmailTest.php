@@ -25,7 +25,7 @@ class SendEmailTest extends Mailable
     public function build()
     {
         return $this->from('admin@amaisoft.com')
-                    ->view('mails.reset',['data'=>$this->data['id']])
+                    ->view('mails.reset',['data'=>$this->data])
                     ->subject('Reset Password');
     }
 }
