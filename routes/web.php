@@ -31,40 +31,58 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-    Route::get('/create-staff-form', [StaffController::class, 'showCreate'])->name('staff.create.form');
-    Route::get('/{staff}/edit-staff-form', [StaffController::class, 'showEdit'])->name('staff.update.form');
-    Route::post('/create-staff', [StaffController::class, 'create'])->name('staff.create');
-    Route::post('/{staff}/edit-staff', [StaffController::class, 'update'])->name('staff.update');
-    Route::delete('/{staff}/delete-staff', [StaffController::class, 'delete'])->name('staff.delete');
+
+Route::group([
+    'prefix' => '/staff',
+    'as' => 'staff.',
+], function () {
+    Route::get('/create-form', [StaffController::class, 'showCreate'])->name('create.form');
+    Route::get('/{staff}/edit-form', [StaffController::class, 'showEdit'])->name('update.form');
+    Route::post('/create', [StaffController::class, 'create'])->name('create');
+    Route::post('/{staff}/edit', [StaffController::class, 'update'])->name('update');
+    Route::delete('/{staff}/delete', [StaffController::class, 'delete'])->name('delete');
+});
+
+Route::group([
+    'prefix' => '/position',
+    'as' => 'position.',
+], function () {
+    Route::get('/show', [PositionController::class, 'show'])->name('show');
+    Route::get('/create-form', [PositionController::class, 'showCreate'])->name('create.form');
+    Route::post('/create', [PositionController::class, 'create'])->name('create');
+    Route::get('/{position}/edit-form', [PositionController::class, 'showEdit'])->name('update.form');
+    Route::post('/{position}/edit', [PositionController::class, 'update'])->name('update');
+    Route::delete('/{position}/delete', [PositionController::class, 'delete'])->name('delete');
+});
 
 
-    Route::get('/show-position', [PositionController::class, 'show'])->name('position.show');
-    Route::get('/create-position-form', [PositionController::class, 'showCreate'])->name('position.create.form');
-    Route::post('/create-position', [PositionController::class, 'create'])->name('position.create');
-    Route::get('/{position}/edit-position-form', [PositionController::class, 'showEdit'])->name('position.update.form');
-    Route::post('/{position}/edit-position', [PositionController::class, 'update'])->name('position.update');
-    Route::delete('/{position}/delete-position', [PositionController::class, 'delete'])->name('position.delete');
+Route::group([
+    'prefix' => '/department',
+    'as' => 'department.',
+], function () {
+    Route::get('/show', [DepartmentController::class, 'show'])->name('show');
+    Route::get('/create-form', [DepartmentController::class, 'showCreate'])->name('create.form');
+    Route::post('/create', [DepartmentController::class, 'create'])->name('create');
+    Route::get('/{department}/edit-form', [DepartmentController::class, 'showEdit'])->name('update.form');
+    Route::post('/{department}/edit', [DepartmentController::class, 'update'])->name('update');
+    Route::delete('/{department}/delete', [DepartmentController::class, 'delete'])->name('delete');
+});
 
 
-
-    Route::get('/show-department', [DepartmentController::class, 'show'])->name('department.show');
-    Route::get('/create-department-form', [DepartmentController::class, 'showCreate'])->name('department.create.form');
-    Route::post('/create-department', [DepartmentController::class, 'create'])->name('department.create');
-    Route::get('/{department}/edit-department-form', [DepartmentController::class, 'showEdit'])->name('department.update.form');
-    Route::post('/{department}/edit-department', [DepartmentController::class, 'update'])->name('department.update');
-    Route::delete('/{department}/delete-department', [DepartmentController::class, 'delete'])->name('department.delete');
-
-
-
-
+Route::group([
+    'prefix' => '/user',
+    'as' => 'user.',
+], function () {
+    Route::get('/create-form', [UserController::class, 'showCreate'])->name('create.form');
+    Route::get('/{user}/edit-form', [UserController::class, 'showEdit'])->name('update.form');
+    Route::post('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/{user}/edit', [UserController::class, 'update'])->name('update');
+    Route::delete('/{user}/delete', [UserController::class, 'delete'])->name('delete');
+});
 Route::get('/user', function () {
     return view('users.show');
 })->name('user');
-Route::get('/create-user-form', [UserController::class, 'showCreate'])->name('user.create.form');
-Route::get('/{user}/edit-user-form', [UserController::class, 'showEdit'])->name('user.update.form');
-Route::post('/create-user', [UserController::class, 'create'])->name('user.create');
-Route::post('/{user}/edit-user', [UserController::class, 'update'])->name('user.update');
-Route::delete('/{user}/delete-user', [UserController::class, 'delete'])->name('user.delete');
+
 
 
 Route::get('/manager', [LoginController::class, 'manager'])->name('manager.show');
